@@ -1,0 +1,152 @@
+Step 1 — Start With Hypothesis Thinking
+
+We don’t create random features. Each feature must test a business hypothesis.
+
+Hypothesis 1 — Price Sensitivity Causes Churn
+
+Create features like:
+
+Price difference
+
+Price change %
+
+Price relative to market
+
+Discount indicator
+
+Hypothesis 2 — Customers Near Contract End Churn More
+
+Create:
+
+Days until contract expiry
+
+Hypothesis 3 — New Customers Churn More
+
+Create:
+
+Customer tenure
+
+Hypothesis 4 — Low Engagement Customers Churn More
+
+Create:
+
+Average consumption
+
+Usage trend
+
+🔷 Step 2 — Load Dataset
+import pandas as pd
+
+df = pd.read_csv("client_data.csv")
+
+🔷 Step 3 — Create New Features (Core Task Requirement)
+
+Below are the most important engineered features expected for this case study.
+
+⭐ Feature 1 — Price Change Percentage (Most Important)
+
+Measures price sensitivity.
+
+df['price_change_pct'] = (df['new_price'] - df['old_price']) / df['old_price']
+
+
+Why it matters:
+
+Customers react to price increases, not just price levels.
+
+⭐ Feature 2 — Tenure Length
+df['tenure_days'] = (pd.to_datetime('today') - pd.to_datetime(df['date_activ'])).dt.days
+
+
+Business insight:
+
+Short-tenure customers are less loyal → higher churn risk.
+
+⭐ Feature 3 — Days Until Contract Ends
+df['days_to_end'] = (pd.to_datetime(df['date_end']) - pd.to_datetime('today')).dt.days
+
+
+Why important:
+
+Customers near renewal often switch providers.
+
+⭐ Feature 4 — Average Energy Consumption
+df['avg_usage'] = (df['gas_usage'] + df['electricity_usage']) / 2
+
+
+Insight:
+
+High-usage customers behave differently than low-usage customers.
+
+⭐ Feature 5 — Discount Indicator
+df['has_discount'] = (df['discount'] > 0).astype(int)
+
+
+Business logic:
+
+Discounts may reduce churn probability.
+
+⭐ Feature 6 — Customer Value Score
+df['customer_value'] = df['monthly_bill'] * df['tenure_days']
+
+
+Insight:
+
+Helps identify whether high-value customers churn more or less.
+
+⭐ Feature 7 — Price vs Market Price (Advanced Feature)
+df['price_vs_market'] = df['electricity_price'] - df['market_price']
+
+
+Most powerful feature for testing price competitiveness hypothesis.
+
+🔷 Step 4 — Convert Categorical Variables
+df = pd.get_dummies(df, drop_first=True)
+
+
+Reason:
+Machine learning models require numeric inputs.
+
+🔷 Step 5 — Scale Numeric Features (For Modeling)
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+num_cols = ['price_change_pct','tenure_days','days_to_end','avg_usage']
+
+df[num_cols] = scaler.fit_transform(df[num_cols])
+
+🔷 Step 6 — Check Feature Relationships
+df.corr()['churn'].sort_values(ascending=False)
+
+
+This identifies which engineered features correlate most with churn.
+
+📊 Expected Strong Predictors
+
+Typically strongest churn indicators:
+
+Price change %
+
+Days to contract end
+
+Tenure
+
+Contract type
+
+Discount presence
+
+If your analysis shows these → your feature engineering is strong.
+
+📄 Submission Write-Up
+
+Feature Engineering Summary
+
+To better understand customer churn behavior, I engineered several new features designed to capture pricing dynamics, customer lifecycle stage, and engagement patterns.
+
+To test price sensitivity, I created variables including price change percentage and price difference relative to market price. I also developed tenure-based features such as customer tenure and days remaining until contract expiration to evaluate whether customers closer to renewal are more likely to churn.
+
+Additionally, I constructed behavioral features such as average energy consumption and a discount indicator to assess whether customer engagement and incentives influence churn risk. A customer value metric was also created to evaluate whether high-value customers behave differently.
+
+These engineered features provide additional predictive signals beyond the raw dataset and will be used in subsequent modeling steps to identify the most influential drivers of churn.
+

@@ -1,0 +1,222 @@
+# Customer Churn Prediction Project Report
+
+## 1. Executive Summary
+
+Customer churn is a major challenge for subscription and service-based businesses because retaining customers is more cost-effective than acquiring new ones. This project analyzes customer data, identifies churn drivers, and builds a predictive machine learning model to detect high-risk customers. Using a Random Forest classification approach, key factors influencing churn were identified and translated into actionable business recommendations to reduce customer attrition and improve revenue retention.
+
+---
+
+## 2. Business Problem
+
+Organizations often struggle to understand why customers leave. Without predictive insight, retention efforts are reactive rather than proactive. The company required a data-driven solution capable of:
+
+* Predicting which customers are likely to churn
+* Identifying key drivers of churn behavior
+* Providing strategic recommendations to reduce churn rate
+
+---
+
+## 3. Objectives
+
+The main objectives of this project were:
+
+* Perform exploratory analysis to understand customer patterns
+* Prepare and clean raw data for modeling
+* Build a predictive churn model
+* Evaluate model performance using appropriate metrics
+* Translate findings into business recommendations
+
+---
+
+## 4. Dataset Description
+
+The dataset consists of structured customer-level data with demographic, behavioral, and financial variables.
+
+### Features Included
+
+**Demographics**
+
+* Gender
+* Age Group
+* Income Category
+
+**Account Details**
+
+* Contract Type
+* Tenure
+* Payment Method
+
+**Financial Metrics**
+
+* Monthly Charges
+* Total Charges
+
+**Target Variable**
+
+* Churn (Yes/No)
+
+---
+
+## 5. Data Preparation
+
+Data preprocessing was conducted to ensure model readiness:
+
+* Missing values handled using statistical imputation
+* Categorical variables encoded into numerical format
+* Irrelevant identifiers removed
+* Data scaled where necessary
+* Dataset split into training and testing sets (80/20)
+
+This step ensured data quality and improved model accuracy.
+
+---
+
+## 6. Exploratory Data Analysis (EDA)
+
+EDA revealed several behavioral patterns:
+
+* Customers with short tenure showed higher churn
+* Month-to-month contracts had the highest attrition
+* Customers with high monthly charges were more likely to churn
+* Long-term customers displayed strong loyalty
+
+These trends guided feature selection for predictive modeling.
+
+---
+
+## 7. Modeling Approach
+
+A Random Forest Classifier was selected because it:
+
+* Handles nonlinear relationships effectively
+* Reduces overfitting through ensemble learning
+* Works well with mixed data types
+* Provides feature importance scores
+
+### Model Training Steps
+
+1. Split dataset into training and testing sets
+2. Train Random Forest model
+3. Generate predictions
+4. Evaluate model performance
+
+---
+
+## 8. Evaluation Metrics
+
+Model performance was evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+
+Recall was prioritized because identifying potential churn customers is more valuable than overall accuracy. Missing a high-risk customer can lead to direct revenue loss.
+
+---
+
+## 9. Key Drivers of Churn
+
+Feature importance analysis identified the most influential variables:
+
+1. Contract Type
+2. Monthly Charges
+3. Tenure
+4. Payment Method
+
+Customers without long-term contracts were significantly more likely to churn compared to those on annual plans.
+
+---
+
+## 10. Customer Segmentation
+
+Customers were segmented using predicted churn probability:
+
+| Segment     | Probability Range | Business Meaning |
+| ----------- | ----------------- | ---------------- |
+| Low Risk    | 0–30%             | Loyal customers  |
+| Medium Risk | 30–70%            | Monitor closely  |
+| High Risk   | 70–100%           | Immediate action |
+
+This segmentation enables targeted retention strategies rather than blanket campaigns.
+
+---
+
+## 11. Business Insights
+
+Key insights derived from the analysis:
+
+* New customers are most vulnerable to churn
+* Pricing sensitivity influences retention
+* Contract commitment reduces churn probability
+* Early engagement significantly improves loyalty
+
+These insights highlight behavioral patterns that can be addressed strategically.
+
+---
+
+## 12. Recommendations
+
+Based on model results and analysis, the following actions are recommended:
+
+**Retention Strategy**
+
+* Target high-risk customers with personalized offers
+* Provide discounts or incentives for contract upgrades
+
+**Customer Engagement**
+
+* Contact customers within first 60 days
+* Offer onboarding support and guidance
+
+**Pricing Optimization**
+
+* Introduce bundled pricing plans
+* Offer loyalty discounts for long-term users
+
+**Operational Improvements**
+
+* Deploy model into production
+* Monitor churn predictions monthly
+* Retrain model periodically with new data
+
+---
+
+## 13. Business Impact
+
+Implementing targeted retention strategies can:
+
+* Reduce churn rate
+* Increase customer lifetime value
+* Improve marketing efficiency
+* Increase profitability
+
+Even a small churn reduction (e.g., 5%) can produce significant revenue gains due to retained customers.
+
+---
+
+## 14. Limitations
+
+* Model accuracy depends on data quality
+* External factors such as market competition not included
+* Behavioral variables limited to available dataset
+
+Future models could incorporate additional behavioral and transactional data for improved performance.
+
+---
+
+## 15. Future Enhancements
+
+Potential improvements:
+
+* Deploy real-time prediction system
+* Add deep learning models for comparison
+* Build automated dashboards for monitoring
+* Integrate CRM system for action triggers
+
+---
+
+## 16. Conclusion
+
+This project demonstrates how data analytics and machine learning can be used to proactively identify customers at risk of churn. By combining predictive modeling with business interpretation, organizations can shift from reactive problem-solving to proactive decision-making. The insights generated provide a foundation for targeted strategies that improve retention, strengthen customer relationships, and increase revenue stability.
+

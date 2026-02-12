@@ -1,0 +1,145 @@
+Step 1 — Understand the Problem
+Churn prediction = Classification problem
+Target variable:
+Churn = Yes / No
+
+Goal:
+
+Predict probability a customer will leave
+
+
+🧹 Step 2 — Prepare the Data
+Clean data before modeling.
+✔ Handle Missing Values
+
+
+Numeric → replace with mean/median
+
+
+Categorical → replace with mode or “Unknown”
+
+
+✔ Convert Categorical Variables
+Random Forest requires numeric input.
+Convert using:
+
+
+Label Encoding (binary categories)
+
+
+One-Hot Encoding (multiple categories)
+
+
+Example:
+Gender → Male=0 Female=1
+Plan → Basic, Premium → 2 columns
+
+
+✔ Remove Irrelevant Columns
+Drop fields like:
+
+
+Customer ID
+
+
+Phone number
+
+
+Unique identifiers
+
+
+
+📉 Step 3 — Split Data
+Divide dataset into training and testing sets.
+Standard split:
+Train = 80%
+Test = 20%
+
+
+🌳 Step 4 — Build Random Forest Model
+Why Random Forest?
+Because it:
+
+
+Handles large datasets
+
+
+Works with non-linear relationships
+
+
+Reduces overfitting
+
+
+Automatically finds important variables
+
+
+
+Python Implementation (Recommended for Interviews)
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+# Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Model
+model = RandomForestClassifier(n_estimators=200, random_state=42)
+
+# Train
+model.fit(X_train, y_train)
+
+# Predict
+predictions = model.predict(X_test)
+
+# Accuracy
+print(accuracy_score(y_test, predictions))
+
+# Report
+print(classification_report(y_test, predictions))
+
+
+📊 Step 5 — Evaluate Model
+Key evaluation metrics interviewers expect:
+MetricMeaningAccuracyOverall correct predictionsPrecisionHow many predicted churners actually churnedRecallHow many real churners were caughtF1 ScoreBalance of precision + recall
+Important for churn models:
+👉 Recall matters most (you don’t want to miss customers about to leave)
+
+🔍 Step 6 — Feature Importance
+Random Forest tells which factors cause churn.
+import pandas as pd
+importance = pd.Series(model.feature_importances_, index=X.columns)
+importance.sort_values(ascending=False)
+
+Example Insights:
+
+
+Contract type = strongest predictor
+
+
+Monthly charges = high churn risk
+
+
+Tenure = low tenure → high churn
+
+
+This is what companies actually care about.
+
+📈 Step 7 — Business Interpretation
+Convert results into business insight:
+Example conclusion:
+
+Customers with monthly charges > ₹2000 and tenure < 6 months have highest churn risk.
+
+Actionable recommendation:
+
+
+Offer discount for new customers
+
+
+Loyalty rewards after 3 months
+
+
+Personalized retention offers
+
+
+

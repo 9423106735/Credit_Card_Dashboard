@@ -1,0 +1,263 @@
+✅ Task Two – Understand the Business & Frame the Problem
+1️⃣ Meet the Client – PowerCo
+
+PowerCo is a major gas and electricity utility provider operating in a competitive market.
+
+Their Core Problem:
+
+They are experiencing customer churn (customers switching to competitors).
+
+In the utilities industry:
+
+Margins are thin
+
+Customer acquisition is expensive
+
+Retention is cheaper than acquisition
+
+Small churn % = large revenue loss
+
+So their business question is:
+
+Why are customers leaving, and how can we reduce churn?
+
+2️⃣ Interpreting the Business Context
+
+Before analyzing data, we translate the business issue into an analytical problem.
+
+Business Hypothesis:
+
+PowerCo suspects that price sensitivity is the main driver of churn.
+
+But we must validate:
+
+Is price really the main driver?
+
+Or are contract types, service issues, or tenure more important?
+
+Analytical Goal:
+
+Identify key churn drivers
+
+Quantify impact of each driver
+
+Predict customers at risk
+
+Recommend retention actions
+
+3️⃣ Breaking Down the Problem (Structured Thinking – Very Important for BCG)
+
+Instead of jumping into data, we structure the problem:
+
+Step 1: Define the Target Variable
+
+Churn (Yes/No)
+
+Step 2: Identify Potential Drivers
+
+We can categorize them into:
+
+A) Pricing & Tariff Variables
+
+Electricity price
+
+Gas price
+
+Price changes over time
+
+Discount history
+
+B) Customer Behavior
+
+Consumption patterns
+
+Payment delays
+
+Billing amount changes
+
+C) Contract & Tenure
+
+Contract type (fixed/variable)
+
+Tenure length
+
+Time to contract renewal
+
+D) Service Interaction
+
+Complaints
+
+Customer service calls
+
+E) Demographics / Segment
+
+Region
+
+SME vs residential
+
+Industry type (if B2B)
+
+4️⃣ Client Data Needed for Analysis
+
+To properly investigate churn, we need:
+
+🔹 Customer Information
+
+Customer ID
+
+Segment (SME / Residential)
+
+Region
+
+Tenure
+
+🔹 Pricing & Contract Data
+
+Electricity price
+
+Gas price
+
+Contract type
+
+Discount applied
+
+Date of contract renewal
+
+🔹 Usage Data
+
+Monthly electricity consumption
+
+Monthly gas consumption
+
+🔹 Billing & Financials
+
+Monthly bill amount
+
+Payment behavior
+
+Late payment indicator
+
+🔹 Target Variable
+
+Churn flag (0/1)
+
+Churn date
+
+5️⃣ Analytical Techniques to Investigate the Problem
+
+We will follow a structured analytical approach:
+
+Phase 1: Exploratory Data Analysis (EDA)
+
+Calculate churn rate
+
+Compare churn vs non-churn customers
+
+Segment churn by:
+
+Price level
+
+Contract type
+
+Tenure buckets
+
+Consumption level
+
+Check correlation between price changes and churn
+
+Goal: Identify patterns & initial drivers
+
+Phase 2: Statistical Testing
+
+Hypothesis testing:
+
+Is churn significantly higher after price increase?
+
+T-tests / Chi-square tests
+
+Feature correlation analysis
+
+Goal: Validate whether price sensitivity is statistically significant
+
+Phase 3: Predictive Modeling
+
+Build churn prediction models:
+
+Logistic Regression (baseline)
+
+Decision Tree
+
+Random Forest
+
+Evaluate:
+
+Accuracy
+
+Precision/Recall
+
+ROC-AUC
+
+Feature importance
+
+Goal: Identify strongest churn drivers
+
+Phase 4: Business Impact Analysis
+
+Estimate revenue loss from churn
+
+Identify high-value customers at risk
+
+Simulate retention strategy impact
+
+6️⃣ Final Output – Email to Manager (Submission Ready)
+
+
+
+Hi,
+
+Following our discussion regarding PowerCo’s customer churn concerns, I have outlined a structured approach to investigate the issue.
+
+**Objective**
+The goal is to identify the key drivers of customer churn and determine whether price sensitivity is the primary factor contributing to customer attrition.
+
+**Data Requirements**
+To conduct this analysis, we will require customer-level data including:
+
+* Customer demographics and tenure
+* Contract type and renewal information
+* Electricity and gas pricing details
+* Discount history
+* Energy consumption data
+* Billing and payment behavior
+* Churn indicator and churn date
+
+**Analytical Approach**
+
+1. **Exploratory Data Analysis (EDA):**
+
+   * Measure churn rate across different customer segments
+   * Compare pricing, contract types, and consumption between churned and retained customers
+
+2. **Statistical Testing:**
+
+   * Test whether price increases significantly impact churn rates
+   * Validate correlations between pricing and churn
+
+3. **Predictive Modeling:**
+
+   * Develop churn prediction models (Logistic Regression, Random Forest)
+   * Identify key features influencing churn probability
+
+4. **Business Impact Assessment:**
+
+   * Quantify revenue loss due to churn
+   * Identify high-value customers at risk
+   * Recommend targeted retention strategies
+
+This approach will allow us to confirm whether price sensitivity is the primary churn driver and provide actionable insights to reduce customer attrition.
+
+Please let me know if you would like me to proceed with the exploratory analysis.
+
+Best regards,
+Apurva
+

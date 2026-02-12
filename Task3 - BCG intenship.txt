@@ -1,0 +1,171 @@
+Step 1: Structured EDA Framework (Very Important for BCG)
+
+We don’t randomly explore data.
+
+We use a hypothesis-driven approach:
+
+Hypothesis:
+
+Customers who experience price increases are more likely to churn.
+
+We test this in 4 phases:
+
+Data Cleaning
+
+Univariate Analysis
+
+Bivariate Analysis (Churn vs Variables)
+
+Feature Investigation (Price sensitivity focus)
+
+🔷 Step 2: Data Cleaning (Python)
+
+Assume dataset: client_data.csv
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load data
+df = pd.read_csv("client_data.csv")
+
+# View structure
+df.info()
+df.head()
+
+✅ Check Missing Values
+df.isnull().sum()
+
+
+If missing values:
+
+df = df.dropna()  # or use fillna()
+
+✅ Remove Duplicates
+df = df.drop_duplicates()
+
+✅ Convert Date Columns
+df['contract_start_date'] = pd.to_datetime(df['contract_start_date'])
+df['contract_end_date'] = pd.to_datetime(df['contract_end_date'])
+
+🔷 Step 3: Understand Churn Rate
+churn_rate = df['churn'].mean()
+print("Churn Rate:", churn_rate)
+
+Visualization:
+sns.countplot(x='churn', data=df)
+plt.title("Churn Distribution")
+plt.show()
+
+🔷 Step 4: Investigate Price Sensitivity
+A) Compare Average Price (Churn vs Non-Churn)
+df.groupby('churn')['electricity_price'].mean()
+
+Visualization:
+sns.boxplot(x='churn', y='electricity_price', data=df)
+plt.title("Electricity Price vs Churn")
+plt.show()
+
+B) Price Change Analysis
+
+If dataset has old vs new price:
+
+df['price_change'] = df['new_price'] - df['old_price']
+
+sns.boxplot(x='churn', y='price_change', data=df)
+plt.title("Price Change vs Churn")
+plt.show()
+
+🔷 Step 5: Tenure Analysis
+
+Customers who recently joined may churn more.
+
+sns.boxplot(x='churn', y='tenure', data=df)
+plt.title("Tenure vs Churn")
+plt.show()
+
+🔷 Step 6: Contract Type Impact
+sns.countplot(x='contract_type', hue='churn', data=df)
+plt.title("Contract Type vs Churn")
+plt.show()
+
+🔷 Step 7: Correlation Analysis
+plt.figure(figsize=(10,8))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
+plt.title("Correlation Matrix")
+plt.show()
+
+
+Check correlation between:
+
+price variables
+
+churn
+
+🔷 Step 8: Statistical Testing (Optional but Impressive)
+from scipy.stats import ttest_ind
+
+churned = df[df['churn']==1]['electricity_price']
+not_churned = df[df['churn']==0]['electricity_price']
+
+ttest_ind(churned, not_churned)
+
+
+If p-value < 0.05 → price difference statistically significant.
+
+🔷 Step 9: Key Visualizations You Should Create
+
+You must create:
+
+📊 Churn distribution
+
+📊 Electricity price vs churn (boxplot)
+
+📊 Price change vs churn
+
+📊 Tenure vs churn
+
+📊 Contract type vs churn
+
+📊 Correlation heatmap
+
+These show structured thinking.
+
+🔷 Step 10: How to Interpret Results (Example)
+Example Insights (Write Something Like This):
+
+Churn rate is X%
+
+Customers with higher electricity prices show slightly higher churn
+
+Price increase appears correlated with churn
+
+However, tenure shows stronger correlation than price
+
+Contract type (variable contracts) have higher churn
+
+🔷 Very Important: Business Interpretation
+
+Even if price is significant:
+
+You must say:
+
+While price appears to influence churn, other factors such as tenure and contract type may also play a significant role. Further modeling is required to quantify feature importance.
+
+BCG likes balanced conclusions.
+
+🔷 What You Should Submit (Write This Summary)
+
+You can paste this in the Forage portal:
+
+📄 Task 3 Summary
+
+I performed exploratory data analysis to investigate whether price sensitivity drives churn. After cleaning the dataset (removing duplicates, handling missing values, converting date columns), I analyzed churn distribution and compared key features across churned and retained customers.
+
+Boxplot analysis shows that customers experiencing higher electricity prices or price increases tend to churn at slightly higher rates. However, tenure and contract type also show significant differences between churned and retained customers.
+
+Correlation analysis indicates that while price variables have some relationship with churn, they are not the only drivers. Statistical testing suggests that price differences are statistically significant, but the magnitude of effect requires further modeling.
+
+Overall, price sensitivity appears to influence churn, but additional predictive modeling is required to determine the most influential factors.
+
